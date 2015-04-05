@@ -50,8 +50,7 @@ namespace OmniSharp.MSBuild
             if (string.IsNullOrEmpty(solutionFilePath))
             {
                 var solutions = Directory.GetFiles(_env.Path, "*.sln");
-                var solutionPicker = new SolutionPicker(_logger);
-                solutionFilePath = solutionPicker.ChooseSolution(_env.Path, solutions);
+                solutionFilePath = SolutionPicker.ChooseSolution(_logger.WriteInformation, _logger.WriteError, _env.Path, solutions);
                 if (solutionFilePath == null)
                 {
                     return;
